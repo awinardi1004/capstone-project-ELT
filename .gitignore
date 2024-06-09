@@ -1,5 +1,6 @@
 # virtual environment
 .venv
+dbt-project/dbt_venv
 
 # service account
 dbt-project/include/gcp/service_account.json

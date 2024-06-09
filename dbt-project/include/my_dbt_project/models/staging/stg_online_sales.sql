@@ -1,0 +1,1 @@
+select*from{{ source('source','online_sales') }}

@@ -1,0 +1,12 @@
+my_dbt_project:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: gcp-de-demo
+      dataset: source
+      keyfile: /usr/local/airflow/include/gcp/service_account.json
+      location: US
+      timeout_seconds: 300
+      threads: 1

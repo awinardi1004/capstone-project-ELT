@@ -2,5 +2,5 @@
 .venv
 dbt-project/dbt_venv
 
-# service account
+# Ignore Google Cloud service account credentials
 dbt-project/include/gcp/service_account.json

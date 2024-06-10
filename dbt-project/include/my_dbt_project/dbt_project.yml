@@ -41,3 +41,6 @@ models:
     dimensional:
       +materialized: table
       +schema: dimensional
+    fact:
+      +materialized: table
+      +schema: fact

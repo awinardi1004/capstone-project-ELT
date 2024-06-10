@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_customers
+    descrition: "dimensional customer tabel"
+    columns:
+    - name: customer_id
+      test:
+      - not_null
+
+  - name: dim_product
+    descrition: "dimensional product tabel"
+    columns:
+    - name: product_id
+      test:
+      - not_null
+      - unique
+  
+  - name: dim_date
+    descrition: "dimensional date tabel"
+    coloumns:
+    - name: date
+      test:
+      - unique
+
+  - name: dim_coupon
+    descrition: "dimensional coupon tabel"

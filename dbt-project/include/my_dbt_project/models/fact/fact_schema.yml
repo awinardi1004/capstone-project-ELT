@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: fct_marketing_spend
+    descrition: "A markeing spend table"
+    columns:
+    - name: date
+      test:
+      - not_null
+
+  - name: fct_online_sales
+    descrition: "A markeing spend table"
+    columns:
+    - name: transaction_id
+      test:
+      - not_null

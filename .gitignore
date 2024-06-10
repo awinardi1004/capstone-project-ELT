@@ -1,5 +1,6 @@
-# file service account
-gcp-de-demo-42670ebfbedf.json
-
 # virtual environment
 .venv
+dbt-project/dbt_venv
+
+# Ignore Google Cloud service account credentials
+dbt-project/include/gcp/service_account.json

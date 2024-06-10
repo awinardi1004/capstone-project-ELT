@@ -1,1 +1,0 @@
-select*from {{ source('source','marketing_spend')}}

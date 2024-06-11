@@ -22,7 +22,7 @@ default_args = {
 }
 
 dag = DAG(
-    "scheduled_dbt_daily",
+    "scheduled_dbt_bg_daily",
     default_args=default_args,
     catchup=False,
     schedule=[dbt_dataset],

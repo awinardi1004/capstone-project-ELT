@@ -42,4 +42,3 @@ models:
         data_tests:
           - not_null 
 
-

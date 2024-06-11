@@ -30,7 +30,7 @@ dag = DAG(
 
 # dbt_check = BashOperator(
 #     task_id="dbt_check",
-#     bash_command="cd /usr/local/airflow/include/dbt; source /usr/local/airflow/dbt_venv/bin/activate; dbt debug --profiles-dir /usr/local/airflow/include/dbt/",
+#     bash_command="cd /usr/local/airflow/include/my_dbt_project; source /usr/local/airflow/dbt_venv/bin/activate; dbt run --profiles-dir /usr/local/airflow/include/my_dbt_project/dbt-profiles/",
 #     dag=dag,
 # )
 

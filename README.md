@@ -1,5 +1,6 @@
 # capstone-project-ELT
-cp_wins
+
+
 ## Tools
 * Snowflake (Data Source 1)
 * CSV (Data Source 2)
@@ -8,5 +9,4 @@ cp_wins
 * Airbyte (Ingestion)
 * Airflow (Orchestration)
 * DBT (Transformation)
-=======
- main
+

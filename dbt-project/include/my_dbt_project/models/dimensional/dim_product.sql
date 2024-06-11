@@ -5,4 +5,3 @@ select
     AVG(Avg_Price) as price
 from {{ ref('stg_online_sales') }}
 group by Product_SKU
-

@@ -5,7 +5,10 @@ select
     os.product_id,
     os.quantity,
     os.amount,
-     {{ get_coupon_code('os.coupon_status', 'dc.coupon_code') }} AS coupon_code,
+    case 
+        when os.coupon_status = 'Used' then dc.coupon_code
+        else 'not used'
+    end as coupon_code,
 from 
     {{ ref('int_online_sales') }} as os
 join 

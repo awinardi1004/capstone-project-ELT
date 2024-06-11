@@ -6,5 +6,5 @@ select
     Quantity as quantity,
     Avg_Price as price,
     Quantity * Avg_Price as amount,
-    Coupon_Status as coupon_Status
+    Coupon_Status as coupon_status
 from {{ ref('stg_online_sales') }}

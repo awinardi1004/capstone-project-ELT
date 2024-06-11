@@ -44,3 +44,6 @@ models:
     fact:
       +materialized: table
       +schema: fact
+    data_mart:
+      +materialized: table
+      +schema: data_mart

@@ -9,6 +9,7 @@ select
         when os.coupon_status = 'Used' then dc.coupon_code
         else 'not used'
     end as coupon_code,
+    os.coupon_status
 from 
     {{ ref('int_online_sales') }} as os
 join 

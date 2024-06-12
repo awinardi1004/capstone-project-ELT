@@ -22,7 +22,7 @@ Clone This Repository
 ```
 git clone https://github.com/awinardi1004/capstone-project-ELT.git
 ```
-Run docker [(compose)](airbyte/docker-compose.yml) to use airbyte
+Run docker [compose](airbyte/docker-compose.yml) to use airbyte
 ```
 docker-compose -f airbyte/docker-compose.yml up
 ```

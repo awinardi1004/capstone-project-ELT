@@ -62,7 +62,7 @@ Run dbt cli to init dbt with BigQuery as data platform
 ```
 dbt init my_dbt_project
 ```
-Testing dbt connection
+Testing dbt connection. Make sure you are in your DBT project directory when testing the connection
 ```
 dbt debug
 ```
@@ -87,5 +87,59 @@ models:
       +materialized: table
       +schema: data_mart
 ```
+Defining Source and creating your a Model
+```
+version: 2
 
+sources:
+  - name: source  
+    tables:
+      - name: DISCOUNT_KUPON
+      - name: customers     
+      - name: marketing_spend   
+      - name: online_sales 
 
+models:
+  - name: stg_disc_kupon
+    description: "A starter dbt model"
+    columns:
+      - name: COUPON_CODE
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+    
+  - name: stg_customers
+    description: "A customers staging model"
+    columns:
+      - name: CustomerID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null 
+          - unique 
+  
+  - name: stg_marketing_spend
+    description: "A marketing_spend staging model"
+    columns:
+      - name: Date
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+
+  - name: stg_online_sales
+    description: "A online sales staging model"
+    columns:
+      - name: Transaction_ID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null 
+```
+### Run and test your model
+Once you create a model, you can then run your model
+```
+dbt run
+dbt test
+```
+### results after creating the model
+This is the result on your bigquery after running dbt successfully
+
+![reult_dbt](assets/data%20warehouse.PNG)

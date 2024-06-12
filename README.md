@@ -161,3 +161,75 @@ Before you run Airflow locally you need to add the following command to the [doc
 RUN python -m venv dbt_venv && source dbt_venv/bin/activate && \
     pip install --no-cache-dir dbt-bigquery==1.8.1 && deactivate
 ```
+To start running your project in a local Airflow environment, run the following command from your project directory:
+```
+astro dev start
+```
+After your project builds successfully, open the Airflow UI in your web browser at `https://localhost:8080/` with credetial.
+```
+username : admin
+password : admin
+```
+
+<b>Create Dags for data modeling</b>
+</br>
+Make sure you are in the dags directory and create the [bg_dbt.py](dbt-project/dags/bg_dbt.py) file to run your dbt automation and scheduling.
+```
+from datetime import timedelta
+from datetime import datetime
+
+# The DAG object; we'll need this to instantiate a DAG
+from airflow import DAG, Dataset
+
+# Operators; we need this to operate!
+from airflow.operators.bash_operator import BashOperator
+from airflow.utils.dates import days_ago
+
+
+dbt_dataset = Dataset("dbt_load")
+
+# These args will get passed on to each operator
+# You can override them on a per-task basis during operator initialization
+default_args = {
+    "owner": "airflow",
+    "depends_on_past": False,
+    "start_date": datetime(2023, 1, 1, 0, 0, 0),
+    "retries": 1,
+    "retry_delay": timedelta(minutes=5),
+}
+
+dag = DAG(
+    "scheduled_dbt_bg_daily",
+    default_args=default_args,
+    catchup=False,
+    schedule=[dbt_dataset],
+)
+
+# dbt_check = BashOperator(
+#     task_id="dbt_check",
+#     bash_command="cd /usr/local/airflow/include/my_dbt_project; source /usr/local/airflow/dbt_venv/bin/activate; dbt run --profiles-dir /usr/local/airflow/include/my_dbt_project/dbt-profiles/",
+#     dag=dag,
+# )
+
+dbt_run = BashOperator(
+    task_id="dbt_run",
+    bash_command="cd /usr/local/airflow/include/my_dbt_project; source /usr/local/airflow/dbt_venv/bin/activate; dbt run --profiles-dir /usr/local/airflow/include/my_dbt_project/dbt-profiles/",
+    dag=dag,
+)
+
+dbt_test = BashOperator(
+    task_id="dbt_test",
+    bash_command="cd /usr/local/airflow/include/my_dbt_project; source /usr/local/airflow/dbt_venv/bin/activate; dbt test --profiles-dir /usr/local/airflow/include/my_dbt_project/dbt-profiles/",
+    dag=dag,
+)
+
+with dag:
+    dbt_run >> dbt_test
+```
+
+<b>Triger DAG</b>
+</br>
+![dags](assets/DBT_Dags.PNG)
+
+## Marketing campaign analysis visualization
+visualization created using looker studio. you can see it [here](https://lookerstudio.google.com/reporting/8e84651e-7b06-4c6d-99dd-e5e490a5347c)

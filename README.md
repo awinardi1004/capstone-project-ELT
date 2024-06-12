@@ -10,3 +10,6 @@
 * Airflow (Orchestration)
 * DBT (Transformation)
 
+## Data Pipeline Design
+![data_pipeline](assets/ELT_data_pipeline.png)
+

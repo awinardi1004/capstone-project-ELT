@@ -139,7 +139,25 @@ Once you create a model, you can then run your model
 dbt run
 dbt test
 ```
-### results after creating the model
+### Results after creating the model
 This is the result on your bigquery after running dbt successfully
 
 ![reult_dbt](assets/data%20warehouse.PNG)
+
+## dbt automation with airflow
+Before you run the Astro CLI you need to [download](https://github.com/astronomer/astro-cli/releases) the installer and add the installer path to your local environment variables.
+
+<b>Create an Astro project</b>
+</br>
+```
+astro dev init
+```
+This command generates all of the project files you need to run Airflow locally, including example DAGs that you can run out of the box.
+
+<b>Run Airflow locally</b>
+</br>
+Before you run Airflow locally you need to add the following command to the [dockerfile](dbt-project/Dockerfile).
+```
+RUN python -m venv dbt_venv && source dbt_venv/bin/activate && \
+    pip install --no-cache-dir dbt-bigquery==1.8.1 && deactivate
+```

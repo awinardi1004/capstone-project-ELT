@@ -34,3 +34,11 @@ Password: password
 Create your source.
 
 ![source](assets/create_source.PNG)
+
+Create your destination.
+
+![destination](assets/create_destination.PNG)
+
+Connect your data source with your data destination on Airbyte. At this stage you can schedule the data load.
+
+![conection_airbyte](assets/create_conection_on_airbyte.PNG)

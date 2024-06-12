@@ -42,3 +42,50 @@ Create your destination.
 Connect your data source with your data destination on Airbyte. At this stage you can schedule the data load.
 
 ![conection_airbyte](assets/create_conection_on_airbyte.PNG)
+
+## Data Modeling on DBT
+### Install using pip and virtual environments
+Create new venv
+```
+python -m venv dbt_venv              # create the environment
+```
+Activate virtual environment         
+```
+dbt_venv\Scripts\activate            # activate the environment for Windows
+```
+### Install and Setup dbt
+Install dbt-bigquery
+```
+python -m pip install dbt-bigquery
+```
+Run dbt cli to init dbt with BigQuery as data platform
+```
+dbt init my_dbt_project
+```
+Testing dbt connection
+```
+dbt debug
+```
+Setup DBT Project configuration
+```
+models:
+  my_dbt_project:
+    # Config indicated by + and applies to all files under models/example/
+    staging:
+      +materialized: table
+      +schema: staging
+    intermediate:
+      +materialized: table
+      +schema: intermediate
+    dimensional:
+      +materialized: table
+      +schema: dimensional
+    fact:
+      +materialized: table
+      +schema: fact
+    data_mart:
+      +materialized: table
+      +schema: data_mart
+```
+
+

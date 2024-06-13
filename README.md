@@ -1,4 +1,8 @@
-# capstone-project-ELT
+# Capstone-project-ELT: ELT pipeline data model for Marketing Campaign Analysis
+## Background Scenario
+TechGear is an e-commerce company that sells various products, especially electronics. To increase sales, the marketing team carried out several marketing strategies, including giving coupons and using paid marketing (such as Google Ads, Meta Ads etc) for one year. To make decisions regarding marketing planning for the following year, the marketing team wants to know whether the marketing strategy implemented in the previous year was effective
+
+Therefore, the marketing team asked the data analyst team to find out the level of effectiveness of the previous marketing strategy and ask for recommendations on whether the previous marketing strategy will be continued or not and what changes are needed. because the required data is spread across various sources, the data analyst team asks for help from the data engineer team to collect and prepare the data needed for the analyst's needs.
 
 
 ## Tools

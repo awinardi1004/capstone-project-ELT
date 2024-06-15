@@ -1,18 +1,11 @@
 from datetime import timedelta
 from datetime import datetime
-
-# The DAG object; we'll need this to instantiate a DAG
 from airflow import DAG, Dataset
-
-# Operators; we need this to operate!
 from airflow.operators.bash_operator import BashOperator
 from airflow.utils.dates import days_ago
 
-
 dbt_dataset = Dataset("dbt_load")
 
-# These args will get passed on to each operator
-# You can override them on a per-task basis during operator initialization
 default_args = {
     "owner": "airflow",
     "depends_on_past": False,
@@ -27,12 +20,6 @@ dag = DAG(
     catchup=False,
     schedule=[dbt_dataset],
 )
-
-# dbt_check = BashOperator(
-#     task_id="dbt_check",
-#     bash_command="cd /usr/local/airflow/include/my_dbt_project; source /usr/local/airflow/dbt_venv/bin/activate; dbt run --profiles-dir /usr/local/airflow/include/my_dbt_project/dbt-profiles/",
-#     dag=dag,
-# )
 
 dbt_run = BashOperator(
     task_id="dbt_run",
